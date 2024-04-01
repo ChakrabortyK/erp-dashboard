@@ -8,26 +8,32 @@ import { Dashboard, Orders, Products } from "./pages";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      // basename: "/erp-dashboard"
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "/",
+          element: <Dashboard />,
+        },
+        {
+          path: "/orders",
+          element: <Orders />,
+        },
+        {
+          path: "/products",
+          element: <Products />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/",
-        element: <Dashboard />,
-      },
-      {
-        path: "/orders",
-        element: <Orders />,
-      },
-      {
-        path: "/products",
-        element: <Products />,
-      },
-    ],
-  },
-]);
+    basename: "/erp-dashboard",
+  }
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
